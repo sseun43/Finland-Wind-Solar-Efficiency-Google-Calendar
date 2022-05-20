@@ -10,4 +10,6 @@ https://calendar.google.com/calendar/embed?src=sai08ge69n2niit3p9evqesvbc%40grou
 
 The main Logic of this project is in script.py
 
-![alt text](https://github.com/sseun43/Finland-Wind-Solar-Efficiency-Google-Calendar/new/main/OwareGame_ScreenShot.png)
+Screenshot of the Google Calendar : 
+
+![alt text](https://github.com/sseun43/Finland-Wind-Solar-Efficiency-Google-Calendar/new/main/google_calender_screenshot.png)
