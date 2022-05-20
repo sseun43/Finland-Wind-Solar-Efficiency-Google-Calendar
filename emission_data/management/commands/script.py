@@ -76,11 +76,11 @@ def get_event_text(energy_value, min_data, max_data):
     total_solar_energy = 414
     total_wind_energy = 3813
     total_green_energy = total_solar_energy + total_wind_energy
-    event_text = f'{get_percentage(energy_value, total_green_energy)}% of green energy capacity'
+    event_text = f'{get_percentage(energy_value, total_green_energy)}% of total green energy capacity'
     if energy_value == min_data:
-        event_text = f'Lowest {get_percentage(energy_value, total_green_energy)}% of green energy capacity'
+        event_text = f'{get_percentage(energy_value, total_green_energy)}% of total green energy capacity'
     elif energy_value == max_data:
-        event_text = f'Highest {get_percentage(energy_value, total_green_energy)}%  of green energy production'
+        event_text = f'{get_percentage(energy_value, total_green_energy)}% of total green energy capacity'
     return event_text
 
 
@@ -108,20 +108,6 @@ def create_events(formatted_data, min_data, first_quartile, mean_data, third_qua
         events.append(create_event(energy_data['start_time'], energy_data['end_time'], energy_data['value'], min_data, first_quartile, mean_data, third_quartile, max_data))
     return events
 
-# def create_google_calendar_event(events, access_token):
-#     CALENDER_ID = os.environ['CALENDER_ID']
-#     url = f'https://www.googleapis.com/calendar/v3/calendars/{CALENDER_ID}/events'
-#     test_event = events[0]
-#     headers = {
-#         'Authorization': 'Bearer ' + access_token,
-#         'Accept': 'application/json',
-#         'Content-Type': 'application/json'
-#     }
-
-#     for event in events:
-#         requests.post(url, headers=headers, json=event)
-#     print("Events created")
-
 def get_calender_service():
     service_account_info = {
         "type": "service_account",
@@ -148,11 +134,7 @@ def create_events_using_service_account(events):
     for event in events:
         service.events().insert(calendarId=CALENDER_ID, body = event).execute()
 
-
-
-
-
-  
+ 
 class Command(BaseCommand):
     help = 'Update the calendar with the current data'
   
@@ -162,10 +144,6 @@ class Command(BaseCommand):
         Sample api call: https://api.fingrid.fi/v1/variable/245/events/json?start_time=2022-05-12T13:06:08Z&end_time=2022-05-15T13:06:08Z
 
         """
-        # headers = {
-        #     'x-api-key': os.environ['X_API_KEY']
-        # }
-        # access_token = get_user().social_auth.get(provider='google-oauth2').extra_data['access_token']
         start_time = datetime.utcnow().replace(tzinfo=utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         end_time = (datetime.utcnow().replace(tzinfo=utc) + timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
         wind_variable_id = '245'
@@ -184,7 +162,6 @@ class Command(BaseCommand):
         max_data = get_max_value(reformed_data)
         min_data = get_min_value(reformed_data)
         events = create_events(reformed_data, min_data, first_quartile, mean_data, third_quartile, max_data)
-        # create_google_calendar_event(events, access_token)
         create_events_using_service_account(events)
         print("Events created")
 
