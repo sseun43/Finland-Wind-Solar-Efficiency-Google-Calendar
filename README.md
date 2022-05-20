@@ -12,4 +12,4 @@ The main Logic of this project is in script.py
 
 Screenshot of the Google Calendar : 
 
-![alt text](https://github.com/sseun43/Finland-Wind-Solar-Efficiency-Google-Calendar/new/main/google_calender_screenshot.png)
+![alt text](https://github.com/sseun43/Finland-Wind-Solar-Efficiency-Google-Calendar/blob/main/google_calender_screenshot.png)
