@@ -9,7 +9,6 @@ load_dotenv()
 from django.contrib.auth import get_user_model
 from concurrent.futures import ThreadPoolExecutor
 import time
-from jwcrypto import jwt, jwk
 from google.oauth2 import service_account
 import googleapiclient.discovery
 
