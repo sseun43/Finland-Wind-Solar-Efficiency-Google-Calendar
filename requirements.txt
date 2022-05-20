@@ -1,4 +1,4 @@
-dotenv
+python-dotenv
 django
 requests
 google-api-python-client
