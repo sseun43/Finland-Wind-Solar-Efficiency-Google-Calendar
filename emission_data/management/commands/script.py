@@ -145,7 +145,7 @@ class Command(BaseCommand):
 
         """
         start_time = datetime.utcnow().replace(tzinfo=utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        end_time = (datetime.utcnow().replace(tzinfo=utc) + timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        end_time = (datetime.utcnow().replace(tzinfo=utc) + timedelta(hours=36)).strftime("%Y-%m-%dT%H:%M:%SZ")
         wind_variable_id = '245'
         solar_variable_id = '248'
         wind_url = f'https://api.fingrid.fi/v1/variable/{wind_variable_id}/events/json?start_time={start_time}&end_time={end_time}'
